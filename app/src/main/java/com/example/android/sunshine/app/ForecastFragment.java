@@ -15,6 +15,7 @@
  */
 package com.example.android.sunshine.app;
 
+import android.content.Intent;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -84,7 +85,7 @@ public class ForecastFragment extends Fragment {
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+    public View onCreateView(final LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
         // Create some dummy data for the ListView.  Here's a sample weekly forecast
@@ -121,6 +122,11 @@ public class ForecastFragment extends Fragment {
 
                 String forecast = mForecastAdapter.getItem(position);
                 Toast.makeText( getActivity(), forecast, Toast.LENGTH_LONG ).show();
+
+                Intent intent = new Intent( getActivity() , DetailActivity.class) ;
+                intent.putExtra( Intent.EXTRA_TEXT, forecast );
+                startActivity( intent );
+
 
             }
         });
